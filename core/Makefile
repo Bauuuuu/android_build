@@ -1194,6 +1194,12 @@ systemtarball-nodeps: $(FS_GET_STATS) \
 .PHONY: stnod
 stnod: systemtarball-nodeps
 
+######### verity_block ######
+VERITY_BLOCK :=$(PRODUCT_OUT)/verity_block.img
+verity_block: $(INSTALLED_SYSTEMIMAGE)
+	build/tools/verity/gen_file_verify_block.sh -s ${PRODUCT_OUT}/system \
+		-o ${PRODUCT_OUT}/verity_block.img
+.PHONY: verity_block
 # -----------------------------------------------------------------
 ## platform.zip: system, plus other files to be used in PDK fusion build,
 ## in a zip file
